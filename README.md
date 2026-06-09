@@ -2,7 +2,7 @@
 
 Portfolio statique généré avec [Next.js](https://nextjs.org), hébergé sur GitHub Pages.
 
-URL : **https://sydgael.github.io/cv-online/**
+URL : **https://sydneygael.github.io/cv-online/**
 
 ## Développement local
 
@@ -35,7 +35,7 @@ Le workflow `.github/workflows/deploy.yml` se déclenche automatiquement sur cha
 3. Génère le site statique (`out/`)
 4. Déploie sur GitHub Pages
 
-Le site est disponible à `https://sydgael.github.io/cv-online/` quelques secondes après le push.
+Le site est disponible à `https://sydneygael.github.io/cv-online/` quelques secondes après le push.
 
 ### Déploiement manuel (optionnel)
 
