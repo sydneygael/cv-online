@@ -1,36 +1,50 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Portfolio — Sydney Adjou-Moumouni
 
-## Getting Started
+Portfolio statique généré avec [Next.js](https://nextjs.org), hébergé sur GitHub Pages.
 
-First, run the development server:
+URL : **https://sydgael.github.io/cv-online/**
+
+## Développement local
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Ouvrir [http://localhost:3000/cv-online](http://localhost:3000/cv-online).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Déploiement sur GitHub Pages
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### 1. Activer GitHub Pages dans les settings du repo
 
-## Learn More
+- Aller dans **Settings → Pages**
+- Source : **GitHub Actions**
 
-To learn more about Next.js, take a look at the following resources:
+### 2. Pusher le code
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```bash
+git add .
+git commit -m "votre message"
+git push
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Le workflow `.github/workflows/deploy.yml` se déclenche automatiquement sur chaque push vers `master` ou `main`. Il :
 
-## Deploy on Vercel
+1. Installe les dépendances
+2. Copie le CV PDF dans `public/`
+3. Génère le site statique (`out/`)
+4. Déploie sur GitHub Pages
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Le site est disponible à `https://sydgael.github.io/cv-online/` quelques secondes après le push.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### Déploiement manuel (optionnel)
+
+Depuis l'onglet **Actions** du repo, cliquer sur **Deploy to GitHub Pages** → **Run workflow**.
+
+## Build local
+
+```bash
+npm run build
+```
+
+Le site statique est généré dans le dossier `out/`.
