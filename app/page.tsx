@@ -20,6 +20,7 @@ const ui = {
       profile: "Profil",
       skills: "Compétences",
       experience: "Expériences",
+      talks: "Talks",
       education: "Formation",
     },
     sections: {
@@ -27,6 +28,8 @@ const ui = {
       skillsSub: "Technologies et outils maîtrisés",
       experience: "Expériences",
       experienceSub: "Parcours professionnel",
+      talks: "Talks",
+      talksSub: "Conférences et interventions disponibles sur YouTube",
       education: "Formation",
       educationSub: "Parcours académique",
     },
@@ -44,6 +47,7 @@ const ui = {
       profile: "Profile",
       skills: "Skills",
       experience: "Experience",
+      talks: "Talks",
       education: "Education",
     },
     sections: {
@@ -51,6 +55,8 @@ const ui = {
       skillsSub: "Technologies and tools",
       experience: "Experience",
       experienceSub: "Professional background",
+      talks: "Talks",
+      talksSub: "Conference talks and sessions available on YouTube",
       education: "Education",
       educationSub: "Academic background",
     },
@@ -333,6 +339,31 @@ const education = [
   },
 ];
 
+/* ─── Talks ─────────────────────────────────────────────────────────────── */
+
+const talks = [
+  {
+    title: { fr: "Talk 01", en: "Talk 01" },
+    videoId: "VmuCcb84S74",
+    href: "https://youtu.be/VmuCcb84S74?si=VNzlII10HKLns0ej",
+  },
+  {
+    title: { fr: "Talk 02", en: "Talk 02" },
+    videoId: "0mQozX1b-ug",
+    href: "https://youtu.be/0mQozX1b-ug?si=iYoChHGwtGcuYmml",
+  },
+  {
+    title: { fr: "Talk 03", en: "Talk 03" },
+    videoId: "iiu8pyZuMtc",
+    href: "https://youtu.be/iiu8pyZuMtc?si=J8Odab6VyAbVu1SS",
+  },
+  {
+    title: { fr: "Talk 04", en: "Talk 04" },
+    videoId: "43Uw3A01lIg",
+    href: "https://youtu.be/43Uw3A01lIg?si=87uM1Vhl2FHF1C5u",
+  },
+];
+
 /* ─── Hooks ──────────────────────────────────────────────────────────────── */
 
 function useScrollAnimations() {
@@ -359,7 +390,6 @@ function useTyping(text: string, speed = 38) {
 
   useEffect(() => {
     if (timerRef.current) clearInterval(timerRef.current);
-    setDisplayed("");
     let i = 0;
     timerRef.current = setInterval(() => {
       i++;
@@ -452,6 +482,7 @@ export default function Portfolio() {
                   ["#profil", l.nav.profile],
                   ["#competences", l.nav.skills],
                   ["#experiences", l.nav.experience],
+                  ["#talks", l.nav.talks],
                   ["#formation", l.nav.education],
                 ] as [string, string][]
               ).map(([href, label]) => (
@@ -500,7 +531,8 @@ export default function Portfolio() {
             {/* Left */}
             <div className="flex-1">
               <p className="font-mono text-blue-600 text-xs font-semibold uppercase tracking-widest mb-4">
-                // {l.role}
+                {"// "}
+                {l.role}
               </p>
               <h1 className="text-5xl sm:text-6xl font-extrabold text-blue-900 leading-tight mb-2">
                 Sydney
@@ -517,7 +549,7 @@ export default function Portfolio() {
                 {l.description}
               </p>
               <p className="font-mono text-blue-600 text-sm mb-8">
-                <span className="text-slate-400">// </span>
+                <span className="text-slate-400">{"// "}</span>
                 {l.aiLine}
               </p>
               <a
@@ -553,7 +585,7 @@ export default function Portfolio() {
       <section id="competences" className="bg-slate-50 py-16">
         <div className="max-w-5xl mx-auto px-6">
           <div className="anim mb-8">
-            <p className="font-mono text-xs text-blue-500 mb-1">// 01</p>
+            <p className="font-mono text-xs text-blue-500 mb-1">{"// 01"}</p>
             <h2 className="text-2xl font-bold text-blue-900 mb-1">
               {l.sections.skills}
             </h2>
@@ -589,7 +621,7 @@ export default function Portfolio() {
       <section id="experiences" className="bg-white py-16">
         <div className="max-w-5xl mx-auto px-6">
           <div className="anim mb-8">
-            <p className="font-mono text-xs text-blue-500 mb-1">// 02</p>
+            <p className="font-mono text-xs text-blue-500 mb-1">{"// 02"}</p>
             <h2 className="text-2xl font-bold text-blue-900 mb-1">
               {l.sections.experience}
             </h2>
@@ -668,11 +700,63 @@ export default function Portfolio() {
         </div>
       </section>
 
-      {/* ── Education ── */}
-      <section id="formation" className="bg-slate-50 py-16">
+      {/* ── Talks ── */}
+      <section id="talks" className="bg-slate-50 py-16">
         <div className="max-w-5xl mx-auto px-6">
           <div className="anim mb-8">
-            <p className="font-mono text-xs text-blue-500 mb-1">// 03</p>
+            <p className="font-mono text-xs text-blue-500 mb-1">{"// 03"}</p>
+            <h2 className="text-2xl font-bold text-blue-900 mb-1">
+              {l.sections.talks}
+            </h2>
+            <p className="text-slate-500 text-sm">{l.sections.talksSub}</p>
+          </div>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">
+            {talks.map((talk, ti) => (
+              <div
+                key={talk.href}
+                className="anim bg-white border border-slate-200 rounded-xl overflow-hidden hover:border-red-300 hover:shadow-md hover:-translate-y-0.5 transition-all"
+                style={{ "--delay": `${ti * 70}ms` } as React.CSSProperties}
+              >
+                <div className="aspect-video bg-slate-900">
+                  <iframe
+                    className="h-full w-full"
+                    src={`https://www.youtube-nocookie.com/embed/${talk.videoId}`}
+                    title={talk.title[lang]}
+                    loading="lazy"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    referrerPolicy="strict-origin-when-cross-origin"
+                    allowFullScreen
+                  />
+                </div>
+                <div className="flex items-center justify-between gap-3 p-4">
+                  <div>
+                    <p className="font-mono text-xs text-slate-400 mb-1">
+                      0{ti + 1}
+                    </p>
+                    <h3 className="font-semibold text-slate-900">
+                      {talk.title[lang]}
+                    </h3>
+                  </div>
+                  <a
+                    href={talk.href}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="shrink-0 font-mono text-xs text-blue-600 hover:text-blue-700"
+                  >
+                    {lang === "fr" ? "YouTube" : "YouTube"}
+                  </a>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── Education ── */}
+      <section id="formation" className="bg-white py-16">
+        <div className="max-w-5xl mx-auto px-6">
+          <div className="anim mb-8">
+            <p className="font-mono text-xs text-blue-500 mb-1">{"// 04"}</p>
             <h2 className="text-2xl font-bold text-blue-900 mb-1">
               {l.sections.education}
             </h2>
@@ -715,6 +799,7 @@ export default function Portfolio() {
                 ["#profil", l.nav.profile],
                 ["#competences", l.nav.skills],
                 ["#experiences", l.nav.experience],
+                ["#talks", l.nav.talks],
                 ["#formation", l.nav.education],
               ] as [string, string][]
             ).map(([href, label]) => (
